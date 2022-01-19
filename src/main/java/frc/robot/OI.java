@@ -41,11 +41,14 @@ public class OI {
 	}
 
 	public static void configureButtonBindings(DriveSubsystem m_robotDrive) {
- 		// Drive at half speed when the right bumper is held
+		// Drive at half speed when the right bumper is held
 		new JoystickButton(driverGamepad, Button.kRightBumper.value)
-				.whenPressed(() -> m_robotDrive.setMaxOutput(0.5))
-				.whenReleased(() -> m_robotDrive.setMaxOutput(1));
+				.whenPressed(() -> m_robotDrive.shiftGearHigh())
+				.whenReleased(() -> m_robotDrive.shiftGearLow());
 
+		new JoystickButton(driverGamepad, Button.kLeftBumper.value)
+				.whenPressed(() -> m_robotDrive.dropWheels())
+				.whenReleased(() -> m_robotDrive.liftWheels());
 
 	}
 }

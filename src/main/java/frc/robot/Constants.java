@@ -42,6 +42,8 @@ public final class Constants {
 
     // Example value only - as above, this must be tuned for your drive!
     public static final double kPDriveVel = 8.5;
+    public static int kShiftSolenoidPort;
+    public static int kDriveSolenoidPort;
   }
 
   public static final class ControllerConstants {
@@ -62,5 +64,12 @@ public final class Constants {
     // Reasonable baseline values for a RAMSETE follower in units of meters and seconds
     public static final double kRamseteB = 2;
     public static final double kRamseteZeta = 0.7;
+  }
+
+  public static final class VisionProcessorConstants {
+
+    public static final int kVisionLedOn = 0;
+    public static final int kVisionLedOff = 1;
+
   }
 }

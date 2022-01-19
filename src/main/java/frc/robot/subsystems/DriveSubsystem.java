@@ -9,6 +9,8 @@ import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants.DriveConstants;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
@@ -46,6 +48,9 @@ public class DriveSubsystem extends SubsystemBase {
 
   // The right-side drive encoder
   private final RelativeEncoder m_rightEncoder = m_rightPrimary.getEncoder();
+
+  private final Solenoid shiftSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, DriveConstants.kShiftSolenoidPort);
+  private final Solenoid dropSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, DriveConstants.kDriveSolenoidPort);
 
   // The gyro sensor
   private final Pigeon m_gyro = Pigeon.getInstance();
@@ -189,5 +194,25 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public double getTurnRate() {
     return -m_gyro.getRate();
+  }
+
+  /** Shifts the robot into high gear. */
+  public void shiftGearHigh() {
+    shiftSolenoid.set(true);
+  }
+
+  /** Shifts the robot into low gear. */
+  public void shiftGearLow() {
+    shiftSolenoid.set(false);
+  }
+
+  /** Drops the omni wheels. */
+  public void dropWheels() {
+    dropSolenoid.set(true);
+  }
+
+  /** Lifts the omni wheels. */
+  public void liftWheels() {
+    dropSolenoid.set(false);
   }
 }
