@@ -20,23 +20,27 @@ import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
  */
 public final class Constants {
   public static final class DriveConstants {
-    public static final int kLeftMotor1Port = 0;
-    public static final int kLeftMotor2Port = 1;
-    public static final int kRightMotor1Port = 2;
-    public static final int kRightMotor2Port = 3;
+    public static final int kLeftMotor1Port   = 12;
+    // public static final int kLeftMotor2Port   = 1;
+    public static final int kRightMotor1Port  = 14;
+    // public static final int kRightMotor2Port  = 3;
 
-    public static int kShiftSolenoidPort = 0;
-    public static int kDriveSolenoidPort = 0;
+    public static int kShiftHSolenoidPort = 0;
+    public static int kShiftLSolenoidPort = 1;
+    public static int kDriveSolenoidPort = 6;
+    public static int kIntakeSolenoidPort = 6;
 
-    public static final double kTrackwidthMeters = 0.69;
+    public static int kIntakeMotorPort = 21;
+
+        public static final double kTrackwidthMeters = 0.69;
     public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(
         kTrackwidthMeters);
 
-    public static final int kEncoderCPR = 1024;
-    public static final double kWheelDiameterMeters = 0.15;
+    public static final int kEncoderCPR                 = 1024;
+    public static final double kWheelDiameterMeters     = 0.15;
     public static final double kEncoderDistancePerPulse =
-        // Assumes the encoders are directly mounted on the wheel shafts
-        (kWheelDiameterMeters * Math.PI) / (double) kEncoderCPR;
+                    // Assumes the encoders are directly mounted on the wheel shafts
+                              (kWheelDiameterMeters * Math.PI) / (double) kEncoderCPR;
 
     // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
     // These characterization values MUST be determined either experimentally or
@@ -45,8 +49,8 @@ public final class Constants {
     // The Robot Characterization Toolsuite provides a convenient tool for obtaining
     // these
     // values for your robot.
-    public static final double ksVolts = 0.22;
-    public static final double kvVoltSecondsPerMeter = 1.98;
+    public static final double ksVolts                      = 0.22;
+    public static final double kvVoltSecondsPerMeter        = 1.98;
     public static final double kaVoltSecondsSquaredPerMeter = 0.2;
 
     // Example value only - as above, this must be tuned for your drive!
@@ -55,28 +59,28 @@ public final class Constants {
 
   public static final class ControllerConstants {
 
-    public static final int kDriverControllerPort = 0;
-    public static final int kOperatorControllerPort = 1;
+    public static final int kDriverControllerPort     = 0;
+    public static final int kOperatorControllerPort   = 1;
 
-    public static final double kDriverDeadBandLeftX = 0.1;
-    public static final double kDriverDeadBandRightX = 0.2;
-    public static final double kDriverDeadBandLeftY = 0.1;
-    public static final double kDriverDeadBandRightY = 0.2;
+    public static final double kDriverDeadBandLeftX   = 0.1;
+    public static final double kDriverDeadBandRightX  = 0.2;
+    public static final double kDriverDeadBandLeftY   = 0.1;
+    public static final double kDriverDeadBandRightY  = 0.2;
   }
 
   public static final class AutoConstants {
-    public static final double kMaxSpeedMetersPerSecond = 3;
+    public static final double kMaxSpeedMetersPerSecond               = 3;
     public static final double kMaxAccelerationMetersPerSecondSquared = 3;
 
     // Reasonable baseline values for a RAMSETE follower in units of meters and
     // seconds
-    public static final double kRamseteB = 2;
+    public static final double kRamseteB    = 2;
     public static final double kRamseteZeta = 0.7;
   }
 
   public static final class VisionProcessorConstants {
 
-    public static final int kVisionLedOn = 0;
+    public static final int kVisionLedOn  = 0;
     public static final int kVisionLedOff = 1;
 
   }

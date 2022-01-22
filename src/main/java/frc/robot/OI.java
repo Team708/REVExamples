@@ -28,7 +28,8 @@ public class OI {
 	}
 
 	public static double getDriverRightX() {
-		return deadBand(driverGamepad.getRightX(), ControllerConstants.kDriverDeadBandRightX);
+		return deadBand(driverGamepad.getLeftX(), ControllerConstants.kDriverDeadBandRightX);
+		// return deadBand(driverGamepad.getRightX(), ControllerConstants.kDriverDeadBandRightX);
 	}
 
 	public static double getDriverLeftY() {
@@ -36,7 +37,8 @@ public class OI {
 	}
 
 	public static double getDriverRightY() {
-		return deadBand(driverGamepad.getRightY(), ControllerConstants.kDriverDeadBandRightY);
+		return deadBand(driverGamepad.getLeftY(), ControllerConstants.kDriverDeadBandRightY);
+		// return deadBand(driverGamepad.getRigtY(), ControllerConstants.kDriverDeadBandRightY);
 	}
 
 	public static void configureButtonBindings(DriveSubsystem m_robotDrive) {

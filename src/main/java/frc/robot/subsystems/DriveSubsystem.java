@@ -22,20 +22,20 @@ public class DriveSubsystem extends SubsystemBase {
   // The motors on the left side of the drive.
 
   private final CANSparkMax m_leftPrimary = new CANSparkMax(DriveConstants.kLeftMotor1Port, MotorType.kBrushless);
-  private final CANSparkMax m_leftSecondary = new CANSparkMax(DriveConstants.kLeftMotor2Port, MotorType.kBrushless);
+  // private final CANSparkMax m_leftSecondary = new CANSparkMax(DriveConstants.kLeftMotor2Port, MotorType.kBrushless);
 
   private final MotorControllerGroup m_leftMotors = new MotorControllerGroup(
-      m_leftPrimary,
-      m_leftSecondary);
+      m_leftPrimary);
+      // m_leftSecondary);
 
   // The motors on the right side of the drive.
 
   private final CANSparkMax m_rightPrimary = new CANSparkMax(DriveConstants.kRightMotor1Port, MotorType.kBrushless);
-  private final CANSparkMax m_rightSecondary = new CANSparkMax(DriveConstants.kRightMotor2Port, MotorType.kBrushless);
+  // private final CANSparkMax m_rightSecondary = new CANSparkMax(DriveConstants.kRightMotor2Port, MotorType.kBrushless);
 
   private final MotorControllerGroup m_rightMotors = new MotorControllerGroup(
-      m_rightPrimary,
-      m_rightSecondary);
+      m_rightPrimary);
+      // m_rightSecondary);
 
   // The robot's drive
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
@@ -46,7 +46,8 @@ public class DriveSubsystem extends SubsystemBase {
   // The right-side drive encoder
   private final RelativeEncoder m_rightEncoder = m_rightPrimary.getEncoder();
 
-  private final Solenoid shiftSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, DriveConstants.kShiftSolenoidPort);
+  private final Solenoid shiftHSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, DriveConstants.kShiftHSolenoidPort);
+  private final Solenoid shiftLSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, DriveConstants.kShiftLSolenoidPort);
   private final Solenoid dropSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, DriveConstants.kDriveSolenoidPort);
 
   // The gyro sensor
@@ -60,7 +61,8 @@ public class DriveSubsystem extends SubsystemBase {
     // We need to invert one side of the drivetrain so that positive voltages
     // result in both sides moving forward. Depending on how your robot's
     // gearbox is constructed, you might have to invert the left side instead.
-    m_rightMotors.setInverted(true);
+    m_rightMotors.setInverted(false);
+    m_leftMotors.setInverted(true);
 
     // Sets the distance per pulse for the encoders
     m_leftEncoder.setPositionConversionFactor(DriveConstants.kEncoderDistancePerPulse);
@@ -195,12 +197,14 @@ public class DriveSubsystem extends SubsystemBase {
 
   /** Shifts the robot into high gear. */
   public void shiftGearHigh() {
-    shiftSolenoid.set(true);
+    shiftHSolenoid.set(true);
+    shiftLSolenoid.set(false);
   }
 
   /** Shifts the robot into low gear. */
   public void shiftGearLow() {
-    shiftSolenoid.set(false);
+    shiftHSolenoid.set(false);
+    shiftLSolenoid.set(true);
   }
 
   /** Drops the omni wheels. */
