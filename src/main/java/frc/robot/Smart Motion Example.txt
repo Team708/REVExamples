@@ -41,8 +41,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
  * PID, is to graph the inputs and outputs to understand exactly what is happening. 
  * For tuning the Velocity PID loop, at a minimum we recommend graphing:
  *
- *    1) The velocity of the mechanism (â€˜Process variableâ€™)
- *    2) The commanded velocity value (â€˜Setpointâ€™)
+ *    1) The velocity of the mechanism (‘Process variable’)
+ *    2) The commanded velocity value (‘Setpoint’)
  *    3) The applied output
  *
  * This example will use ShuffleBoard to graph the above parameters. Make sure to
@@ -183,8 +183,5 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("SetPoint", setPoint);
     SmartDashboard.putNumber("Process Variable", processVariable);
     SmartDashboard.putNumber("Output", m_motor.getAppliedOutput());
-    SmartDashboard.putNumber("Output Current", m_motor.getOutputCurrent());
-    SmartDashboard.putNumber("Motor Temp", m_motor.getMotorTemperature());
-    SmartDashboard.putNumber("Encoder Position", m_encoder.getPosition());
-    }
+  }
 }
